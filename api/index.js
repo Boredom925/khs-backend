@@ -13,6 +13,7 @@ const noticeRoutes = require('../routes/notices');
 const admissionRoutes = require('../routes/admission');
 
 const app = express();
+app.set('trust proxy', 1); //email crash
 
 // ─── Security Headers ─────────────────────────────────────────────
 app.use(helmet());
