@@ -19,21 +19,9 @@ app.set('trust proxy', 1); //email crash
 app.use(helmet());
 
 // ─── CORS ─────────────────────────────────────────────────────────
-const allowedOrigins = [
-  process.env.CLIENT_URL,
-  'http://localhost:5500',       // VS Code Live Server default
-  'http://127.0.0.1:5500',
-  'http://localhost:3000',
-].filter(Boolean);
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, Postman, curl)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      callback(new Error(`CORS policy: origin ${origin} not allowed`));
-    },
+    origin: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
